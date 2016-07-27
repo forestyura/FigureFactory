@@ -1,12 +1,22 @@
+import java.util.Comparator;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class Main {
+
+   private static TreeSet<Figure> figureSet = new TreeSet<>(new Comparator<Figure>() {
+       @Override
+       public int compare(Figure o1, Figure o2) {
+           return (int)(o2.getSumPerimeterAndArea() - o1.getSumPerimeterAndArea());
+       }
+   });
+
     public static void main (String args[]) {
         int menuInput;
 
         do {
             menuInput = showMenu();
-            if ((menuInput > 3) || menuInput < 0) {
+            if ((menuInput > 4) || menuInput < 0) {
                 System.out.println(" Input incorrect!!!");
             }
             else {
@@ -18,6 +28,8 @@ public class Main {
                     case 2: createCircle();
                         break;
                     case 3: createSquare();
+                        break;
+                    case 4: showFigureSet();
                         break;
                 }
             }
@@ -33,6 +45,7 @@ public class Main {
         System.out.println("1.Create triangle");
         System.out.println("2.Create circle");
         System.out.println("3.Create square");
+        System.out.println("4.Show FigureSet");
         System.out.println("0.Exit");
         return cs.nextInt();
     }
@@ -53,7 +66,7 @@ public class Main {
         sideC = cs.nextDouble();
 
         Triangle triangle = new Triangle(name, sideA, sideB, sideC);
-        System.out.println(triangle.show());
+        figureSet.add(triangle);
     }
 
     public static void createCircle() {
@@ -66,7 +79,7 @@ public class Main {
         radius = cs.nextDouble();
 
         Circle circle = new Circle(name, radius);
-        System.out.println(circle.show());
+        figureSet.add(circle);
     }
 
     public static void createSquare() {
@@ -79,6 +92,12 @@ public class Main {
         side = cs.nextDouble();
 
         Square square = new Square(name, side);
-        System.out.println(square.show());
+        figureSet.add(square);
+    }
+
+    public static void showFigureSet() {
+        for(Figure figure: figureSet) {
+            System.out.println(figure.show());
+        }
     }
 }

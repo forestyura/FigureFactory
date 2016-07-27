@@ -1,4 +1,4 @@
-public class Triangle {
+public class Triangle implements Figure {
     private String name;
     private String color;
     private double area;
@@ -22,6 +22,18 @@ public class Triangle {
         else {
             this.color = "blue";
         }
+    }
+
+    public double getArea() {
+        return area;
+    }
+
+    public double getPerimeter() {
+        return perimeter;
+    }
+
+    public double getSumPerimeterAndArea() {
+        return area + perimeter;
     }
 
     public String show() {

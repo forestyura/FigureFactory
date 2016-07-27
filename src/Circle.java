@@ -1,4 +1,4 @@
-public class Circle {
+public class Circle implements Figure {
     private String name;
     private String color;
     private double area;
@@ -17,6 +17,18 @@ public class Circle {
         } else {
             this.color = "blue";
         }
+    }
+
+    public double getArea() {
+        return area;
+    }
+
+    public double getPerimeter() {
+        return perimeter;
+    }
+
+    public double getSumPerimeterAndArea() {
+        return area + perimeter;
     }
 
     public String show() {
